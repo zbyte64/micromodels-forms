@@ -20,8 +20,8 @@ class MicroModelConverterBase(object):
 
     def convert(self, model, field, field_args):
         kwargs = {
-            #'label': field.verbose_name,
-            #'description': field.help_text,
+            'label': field.verbose_name,
+            'description': field.help_text,
             'validators': [],
             'filters': [],
             'default': field.default,
@@ -55,7 +55,7 @@ class MicroModelConverter(MicroModelConverterBase):
         f.DateField: ['DateField'],
         f.BooleanField: ['BooleanField'],
         f.TextField: ['CharField', 'PhoneNumberField', 'SlugField'],
-        f.TextAreaField: ['TextField', 'XMLField'],
+        f.TextAreaField: ['TextField', 'XMLField', 'JSONField'],
     }
 
     def __init__(self, extra_converters=None, simple_conversions=None):
