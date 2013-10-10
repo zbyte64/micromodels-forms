@@ -6,7 +6,7 @@ from wtforms import Form
 from wtforms import validators
 from wtforms.compat import iteritems
 
-from .fields import URIField
+from .fields import URIField, URIFileField
 
 
 __all__ = (
@@ -58,7 +58,8 @@ class MicroModelConverter(MicroModelConverterBase):
         f.BooleanField: ['BooleanField'],
         f.TextField: ['CharField', 'PhoneNumberField', 'SlugField'],
         f.TextAreaField: ['TextField', 'XMLField', 'JSONField'],
-        URIField: ['URIField'],
+        URIFileField: ['URIFileField'],
+        URIField: ['URIField', 'URLField'],
     }
 
     def __init__(self, extra_converters=None, simple_conversions=None):
