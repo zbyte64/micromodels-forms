@@ -1,6 +1,8 @@
 """
 Tools for generating forms based on micromodels.
 """
+from collections import OrderedDict
+
 from wtforms import fields as f
 from wtforms import Form
 from wtforms import validators
@@ -140,7 +142,7 @@ def model_fields(model, only=None, exclude=None, field_args=None, converter=None
     elif exclude:
         model_fields = (x for x in model_fields if x[0] not in exclude)
 
-    field_dict = {}
+    field_dict = OrderedDict()
     for name, model_field in model_fields:
         field = converter.convert(model, model_field, field_args.get(name))
         if field is not None:
