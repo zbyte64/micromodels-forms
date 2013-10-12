@@ -116,11 +116,11 @@ class MicroModelConverter(MicroModelConverterBase):
 
     def conv_ModelField(self, model, field, kwargs):
         form = model_form(field._wrapped_class)
-        return f.FormField(form)
+        return f.FormField(form, default=field._wrapped_class)
 
     def conv_ModelCollectionField(self, model, field, kwargs):
         form = model_form(field._wrapped_class)
-        return f.FieldList(f.FormField(form))
+        return f.FieldList(f.FormField(form, default=field._wrapped_class))
 
     def conv_FieldCollectionField(self, model, field, kwargs):
         form_field = self.convert(model, field._instance, {})
