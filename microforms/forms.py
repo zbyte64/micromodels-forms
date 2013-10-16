@@ -198,8 +198,12 @@ class MicromodelFormMeta(type(Form)):
             fields = model_fields(opts.model, only=opts.fields,
                 exclude=opts.exclude, field_args=opts.field_args,
                 converter=opts.converter)
-            for key, attr in fields.items():
-                setattr(cls, key, attr)
+            for cnt, (key, attr) in enumerate(fields.items()):
+                if hasattr(cls, key):
+                    getattr(cls, key).creation_counter = cnt
+                else:
+                    attr.creation_counter = cnt
+                    setattr(cls, key, attr)
 
 
 class MicromodelForm(Form):
